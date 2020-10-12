@@ -195,14 +195,25 @@
         </sql>
     </changeSet>
 
-    <changeSet id="create-column-is-teleconsultation-enabled-202008241255" author="Gracil">
+    <changeSet id="create-column-teleconsultation-202008241255" author="Vishal">
     <preConditions onFail="MARK_RAN">
             <tableExists tableName="patient_appointment" />
     </preConditions>
     <sql>
         ALTER TABLE patient_appointment
-        ADD is_teleconsultation_enabled BOOLEAN
+        ADD teleconsultation BOOLEAN NOT NULL
+        CONSTRAINT dv_teleconsultation_is_false DEFAULT FALSE;
     </sql>
+    </changeSet>
+
+    <changeSet id="create-column-dummy-202008241999" author="Vishal">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="patient_appointment" />
+        </preConditions>
+        <sql>
+            ALTER TABLE patient_appointment
+            ADD is_dummy BOOLEAN
+        </sql>
     </changeSet>
 
     <changeSet id="drop_index_on_appointment_service_table-201707251710" author="Santhosh, Maharjun">

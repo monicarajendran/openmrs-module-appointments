@@ -8,11 +8,7 @@ import org.openmrs.Provider;
 import org.openmrs.module.appointments.util.DateUtil;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Appointment extends BaseOpenmrsData implements Serializable {
@@ -26,7 +22,8 @@ public class Appointment extends BaseOpenmrsData implements Serializable {
     private Date startDateTime;
     private Date endDateTime;
     private AppointmentKind appointmentKind;
-    private Boolean isTeleconsultationEnabled;
+    private Boolean teleconsultation;
+
     private AppointmentStatus status;
     private String comments;
     private Set<AppointmentProvider> providers;
@@ -179,7 +176,7 @@ public class Appointment extends BaseOpenmrsData implements Serializable {
     }
 
     public Date getDateFromStartDateTime() {
-        return DateUtils.truncate(getStartDateTime(), java.util.Calendar.DAY_OF_MONTH);
+        return DateUtils.truncate(getStartDateTime(), Calendar.DAY_OF_MONTH);
     }
 
     public Appointment getRelatedAppointment() {
@@ -203,12 +200,12 @@ public class Appointment extends BaseOpenmrsData implements Serializable {
         return this.getUuid().equals(appointment.getUuid());
     }
 
-    public void setIsTeleconsultationEnabled(Boolean isTeleconsultationEnabled) {
-        this.isTeleconsultationEnabled = isTeleconsultationEnabled;
+    public void setTeleconsultation(Boolean teleconsultation) {
+        this.teleconsultation = teleconsultation;
     }
 
-    public Boolean getIsTeleconsultationEnabled(){
-        return isTeleconsultationEnabled;
+    public Boolean getTeleconsultation() {
+        return teleconsultation;
     }
 }
 
