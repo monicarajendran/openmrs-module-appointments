@@ -60,10 +60,14 @@ public class TeleconsultationAppointmentNotificationServiceImpl implements Telec
                 String day = new SimpleDateFormat("EEEE").format(appointmentStart);
                 String date = new SimpleDateFormat("dd/MM/yy").format(appointmentStart);
                 String time = new SimpleDateFormat("hh:mm a").format(appointmentStart);
+
+                String emailSubject = (properties != null) ? properties.getProperty("email.subject") : EMAIL_SUBJECT;
+                String emailBody = (properties != null) ? properties.getProperty("email.body") : EMAIL_BODY;
+
                 emailNotificationService.send(
-                        Context.getMessageSourceService().getMessage(properties.getProperty("email.subject"), null, null),
+                        Context.getMessageSourceService().getMessage(emailSubject, null, null),
                         Context.getMessageSourceService().getMessage(
-                                properties.getProperty("email.body"),
+                                emailBody,
                                 new Object[]{
                                         patientName,
                                         doctor,

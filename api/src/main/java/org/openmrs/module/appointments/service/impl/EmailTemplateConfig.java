@@ -19,8 +19,10 @@ public class EmailTemplateConfig {
                 inputStream = new FileInputStream(file);
             } else {
                 inputStream = getClass().getClassLoader().getResourceAsStream(resourceName);
-                if (inputStream == null)
-                    throw new IOException();
+                if (inputStream == null) {
+                    properties = null;
+                    return;
+                }
             }
             properties.load(inputStream);
         }
